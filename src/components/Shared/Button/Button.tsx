@@ -19,6 +19,8 @@ const StyledButton = styled.button`
     border-radius: 3px;
     color: white;
     transition: 1s background-color;
+
+    
     &:hover {
         background-color: hsla(21, 86%, 67%, 1.00);
     }
