@@ -11,15 +11,30 @@ const Body = styled.div`
   width: 100vw;
   display: grid;
   grid-template-columns: auto 1fr;
+  
+  position: relative;
+  width: calc(100vw + 300px);
+  left: -300px;
+  transition: 1s left;
+
+  
+  &.open {
+    left: 0;
+  }
+
+  &.close {
+    left: -300px;
+  }
 `
 
 
 
 function App() {
+  const { sideBarsOpen } = useAppSelector(state => state.helper)
   return (
     <Wrapper>
       <DeleteModal />
-      <Body>
+      <Body className={sideBarsOpen ? "open" : "close"}>
          <Sidebar />
         <Main />
       </Body>

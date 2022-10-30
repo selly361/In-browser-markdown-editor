@@ -60,7 +60,7 @@ html {
 
 h1, h2, h3 , h4 , h5 , h6 {
   font-weight: var(--bolder);
-  font-family: var(--robotoSlab);
+  font-family: var(--roboto);
   transition: .5s;
   line-height: 35px;
 }

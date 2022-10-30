@@ -6,11 +6,12 @@ import styled from "styled-components";
 const StyledBackDrop = styled(motion.div)`
   position: fixed;
   inset: 0;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: ${({theme}) => theme.backdrop};
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 100;
 `;
 
 const BackDrop = ({ open, children }: { open: boolean, children: React.ReactNode }) => {

@@ -1,13 +1,13 @@
 export const sidebarAnimation = {
     hidden: {
-      width: "0px",
+      left: "-250px",
     },
     visible: {
-      width: "250px",
+      left: "0",
       transition: { duration: .5 },
     },
     exit: {
-      width: "0px",
+      left: "-250px",
       transition: { duration: .5 },
     },
   };

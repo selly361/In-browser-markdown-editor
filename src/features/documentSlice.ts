@@ -76,9 +76,16 @@ const documentSlice = createSlice({
 
       saveToStorage("data", JSON.stringify(initialState));
     },
+
+
+    toggleDocument: (state, action) => {
+      state.currentDocument = {
+        ...action.payload
+      }
+    }
   },
 });
 
 export default documentSlice.reducer;
-export const { deleteDocument, saveDocument, changeDocumentName } =
+export const { deleteDocument, saveDocument, changeDocumentName, toggleDocument } =
   documentSlice.actions;
