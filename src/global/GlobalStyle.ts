@@ -133,9 +133,21 @@ input, button, textarea, select {
   font: inherit;
 }
 
+button, svg {
+  cursor: pointer;
+}
+
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
+
+input, button, fieldset{
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+
 
 
 `;
