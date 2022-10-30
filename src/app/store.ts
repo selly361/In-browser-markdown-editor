@@ -1,7 +1,12 @@
 import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit';
 
+import documentReducer from "features/documentSlice"
+import helperReducer from "features/helperSlice"
+
 export const store = configureStore({
   reducer: {
+    helper: helperReducer,
+    document: documentReducer
   },
 });
 
