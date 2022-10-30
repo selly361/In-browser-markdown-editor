@@ -1,4 +1,4 @@
-import { Header, Main, Sidebar, Wrapper } from "components";
+import { DeleteModal, Header, Main, Sidebar, Wrapper } from "components";
 
 import { GlobalStyle } from "global/GlobalStyle";
 import React from "react";
@@ -18,6 +18,7 @@ const Body = styled.div`
 function App() {
   return (
     <Wrapper>
+      <DeleteModal />
       <Body>
          <Sidebar />
         <Main />

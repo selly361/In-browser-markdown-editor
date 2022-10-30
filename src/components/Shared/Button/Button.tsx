@@ -4,11 +4,13 @@ import styled from 'styled-components';
 interface Iprops {
     iconStart?: JSX.Element;
     iconEnd?: JSX.Element;
-    children: React.ReactNode
+    children: React.ReactNode;
+    width?: string;
+    onClick?: Function;
 }
 
-const StyledButton = styled.button`
-    width: max-content;
+const StyledButton = styled.button<{ width: string }>`
+    width: ${props => props.width};
     height: 50px;
     background-color: hsla(13, 75%, 58%, 1.00);
     display: flex;
@@ -26,9 +28,9 @@ const StyledButton = styled.button`
     }
 `
 
-const Button = ({ iconStart, iconEnd, children }: Iprops) => {
+const Button = ({ iconStart, iconEnd, children, width = "max-content", onClick = () => {} }: Iprops) => {
   return (
-    <StyledButton>
+    <StyledButton onClick={() => onClick()} width={width}>
         {iconStart}
         {children}
         {iconEnd}

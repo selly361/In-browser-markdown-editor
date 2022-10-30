@@ -1,10 +1,23 @@
-import { CloseMenuIcon, DeleteIcon, DocumentIcon, LogoIcon, OpenMenuIcon, SaveIcon } from "assets";
+import {
+  CloseMenuIcon,
+  DeleteIcon,
+  DocumentIcon,
+  LogoIcon,
+  OpenMenuIcon,
+  SaveIcon,
+} from "assets";
 import React, { useState } from "react";
+import {
+  changeDocumentName,
+  deleteDocument,
+  saveDocument,
+} from "features/documentSlice";
+import { openModal, toggleSidebar } from "features/helperSlice";
 import { useAppDispatch, useAppSelector } from "app/hooks";
 
 import Button from "components/Shared/Button/Button";
+import { current } from "@reduxjs/toolkit";
 import styled from "styled-components";
-import { toggleSidebar } from "features/helperSlice";
 
 const StlyedHeader = styled.header`
   width: 100vw;
@@ -33,7 +46,7 @@ const ContainerOne = styled.div`
 
 const DocumentDetailsWrapper = styled.div`
   height: 60%;
-  border-left: 1px solid hsla(216, 8%, 38%, 1.00);
+  border-left: 1px solid hsla(216, 8%, 38%, 1);
   padding-left: 2rem;
   display: flex;
   align-items: center;
@@ -62,15 +75,31 @@ const ContainerTwo = styled.div`
   align-items: center;
   gap: 2rem;
   margin-right: 1rem;
-  
-`
+
+  path {
+    transition: 1s fill;
+  }
+
+  button:disabled {
+    &,
+    svg {
+      cursor: not-allowed;
+    }
+
+    svg:hover path {
+      fill: #7c8187;
+    }
+  }
+
+  svg:hover path {
+    fill: var(--dark-orange);
+  }
+`;
 
 const Header = () => {
   const { helper, document } = useAppSelector((state) => state);
   const { currentDocument } = document;
   const dispatch = useAppDispatch();
-
-  const [inputValue, setInputValue] = useState(currentDocument)
 
   return (
     <StlyedHeader>
@@ -83,13 +112,26 @@ const Header = () => {
           <DocumentIcon />
           <Fieldset>
             <Label>Document Name</Label>
-            <Input value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+            <Input
+              value={currentDocument.name}
+              onChange={(e) => dispatch(changeDocumentName(e.target.value))}
+            />
           </Fieldset>
         </DocumentDetailsWrapper>
       </ContainerOne>
       <ContainerTwo>
-        <DeleteIcon />
-        <Button iconStart={<SaveIcon />}>Save Changes</Button>
+        <button
+          onClick={() => dispatch(openModal("delete-modal"))}
+          disabled={document.documents.length === 1}
+        >
+          <DeleteIcon />
+        </button>
+        <Button
+          onClick={() => dispatch(saveDocument())}
+          iconStart={<SaveIcon />}
+        >
+          Save Changes
+        </Button>
       </ContainerTwo>
     </StlyedHeader>
   );
