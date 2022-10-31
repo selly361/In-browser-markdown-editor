@@ -1,5 +1,5 @@
 export const uuid = () => {
-  function* generateId() {
+  function* generateId(): any {
     let i = 2;
     while (true) {
       yield i;
@@ -9,8 +9,8 @@ export const uuid = () => {
 
   let gen = generateId();
 
-  return () => {
-    let id = gen.next().value;
+  return (): number => {
+    let id: number = gen.next().value;
     return id;
   };
 };

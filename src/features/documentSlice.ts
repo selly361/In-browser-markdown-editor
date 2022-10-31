@@ -82,10 +82,20 @@ const documentSlice = createSlice({
       state.currentDocument = {
         ...action.payload
       }
+    },
+
+    newDocument: (state) => {
+      let newId = generateId()
+      state.documents.push({
+        id: newId,
+        createdAt: new Date().toLocaleDateString(),
+        content: "",
+        name: `Untitled Document${newId - (state.documents.at(-1)?.id || 0)}`
+      })
     }
   },
 });
 
 export default documentSlice.reducer;
-export const { deleteDocument, saveDocument, changeDocumentName, toggleDocument } =
+export const { deleteDocument, saveDocument, changeDocumentName, toggleDocument, newDocument } =
   documentSlice.actions;

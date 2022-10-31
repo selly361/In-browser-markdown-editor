@@ -6,7 +6,7 @@ import Button from "components/Shared/Button/Button";
 import React from "react";
 import { sidebarAnimation } from "global/animation";
 import styled from "styled-components";
-import { toggleDocument } from "features/documentSlice";
+import { newDocument, toggleDocument } from "features/documentSlice";
 import { toggleTheme } from "features/helperSlice";
 
 const StyledAside = styled(motion.aside)`
@@ -78,7 +78,7 @@ const ToggleThemeWrap = styled.div`
 
 const Documents = styled.div`
   display: grid;
-  gap: 0.7rem;
+  gap: 0.3rem;
 
 `;
 
@@ -87,7 +87,7 @@ display: flex;
 gap: 1rem;
 align-items: center;
 cursor: pointer;
-padding: 1rem;
+padding: .5rem;
 transition: 1s background-color;
 border-radius: 3px;
 
@@ -124,7 +124,7 @@ const Sidebar = () => {
     <StyledAside>
       <div>
       <Title>MY DOCUMENTS</Title>
-      <Button width="100%">+ New Document</Button>
+      <Button onClick={() => dispatch(newDocument())} width="100%">+ New Document</Button>
       </div>
       <Documents>
         {state.document.documents.map((doc) => (
@@ -132,7 +132,7 @@ const Sidebar = () => {
             <DocumentIcon />
             <div>
               <Time>{doc.createdAt}</Time>
-              <DocName>{doc.name}</DocName>
+              <DocName>{doc.name}.md</DocName>
             </div>
           </Document>
         ))}
