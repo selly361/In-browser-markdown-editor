@@ -9,7 +9,7 @@ import { deleteDocument } from "features/documentSlice";
 import styled from "styled-components";
 
 const Modal = styled.div`
-  width: 400px;
+  width: 350px;
   height: max-content;
   background-color: ${({ theme }) => theme.modal};
   position: fixed;
@@ -21,6 +21,13 @@ const Modal = styled.div`
   flex-flow: column;
   gap: 1rem;
   text-align: center;
+  border-radius: 8px;
+
+  button {
+    color: white;
+    font-weight: bold;
+    margin: auto;
+  }
 `;
 
 const Title = styled.h3`
@@ -58,8 +65,8 @@ const DeleteModal = () => {
           <Button onClick={() => {
             dispatch(deleteDocument())
             dispatch(closeModal())
-          }} width="100%" iconStart={<DeleteIcon />}>Confirm & Delete</Button>
-          <Button onClick={() => dispatch(closeModal())} width="100%">Cancel</Button>
+          }} width="60%">Confirm & Delete</Button>
+          <Button onClick={() => dispatch(closeModal())} width="60%">Cancel</Button>
         </Modal>
       </BackDrop>
     </>

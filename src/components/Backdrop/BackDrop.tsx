@@ -20,8 +20,8 @@ const BackDrop = ({ open, children }: { open: boolean, children: React.ReactNode
       {open && (
         <StyledBackDrop
           initial={{  y: "-100vh" }}
-          animate={{ y: 0, transition: { duration: .8 } }}
-          exit={{ y: "100vh", transition: { duration: .8 } }}
+          animate={{ y: 0, transition: { duration: .5 } }}
+          exit={{ y: "-100vh", transition: { duration: .5 } }}
         >
             {children}
         </StyledBackDrop>

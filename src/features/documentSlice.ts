@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import documents from "data/data.json";
+import { dateFormat } from "utils/dateFormat";
 import { uuid } from "utils/uuid";
 
 let generateId = uuid();
@@ -51,6 +52,9 @@ const documentSlice = createSlice({
       if (document) {
         document.name = action.payload;
         state.currentDocument.name = action.payload;
+
+        if(!document.name.includes(".md")) document.name += ".md"
+
       }
     },
 
@@ -86,11 +90,13 @@ const documentSlice = createSlice({
 
     newDocument: (state) => {
       let newId = generateId()
+
+
       state.documents.push({
         id: newId,
-        createdAt: new Date().toLocaleDateString(),
+        createdAt: dateFormat(new Date()),
         content: "",
-        name: `Untitled Document${newId - (state.documents.at(-1)?.id || 0)}`
+        name: `untitled-document`
       })
     }
   },

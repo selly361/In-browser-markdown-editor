@@ -13,17 +13,20 @@ const StyledAside = styled(motion.aside)`
   width: 300px;
   height: 100vh;
   background-color: ${({ theme }) => theme.sideBar};
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 3rem;
+
+  .new-document-container {
+    height: max-content;
+    margin: 2rem 2rem 0 2rem;
+  }
 `;
 
 const Title = styled.h3`
   color: #adb5bd;
   font-size: 1rem;
   height: max-content;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 `;
 
 const ToggleInput = styled.input`
@@ -64,6 +67,9 @@ const ToggleThemeWrap = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
+  align-self: end;
+  height: max-content;
+  margin: 0 2rem 2rem 2rem;
 
   & > svg {
     &.active path {
@@ -77,25 +83,29 @@ const ToggleThemeWrap = styled.div`
 `;
 
 const Documents = styled.div`
-  display: grid;
-  gap: 0.3rem;
-
+  gap: 0.5rem;
+  max-height: 600px;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  overflow-y: auto;
 `;
 
 const Document = styled.div`
-display: flex;
-gap: 1rem;
-align-items: center;
-cursor: pointer;
-padding: .5rem;
-transition: 1s background-color;
-border-radius: 3px;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  cursor: pointer;
+  transition: 1s background-color;
+  border-radius: 3px;
+  height: max-content;
+  padding: 1rem;
+  width: 100%;
 
-div:first-child {
+  div:first-child {
     display: grid;
-    gap: .3rem;
+    gap: 0.3rem;
   }
-
 
   &.active {
     background-color: var(--black-1);
@@ -108,7 +118,7 @@ div:first-child {
 
 const Time = styled.p`
   color: #adb5bd;
-  font-size: .8rem;
+  font-size: 0.8rem;
 `;
 
 const DocName = styled.h5`
@@ -122,17 +132,29 @@ const Sidebar = () => {
   const state = useAppSelector((state) => state);
   return (
     <StyledAside>
-      <div>
-      <Title>MY DOCUMENTS</Title>
-      <Button onClick={() => dispatch(newDocument())} width="100%">+ New Document</Button>
+      <div className="new-document-container">
+        <Title>MY DOCUMENTS</Title>
+        <Button onClick={() => dispatch(newDocument())} width="100%">
+          + New Document
+        </Button>
       </div>
       <Documents>
-        {state.document.documents.map((doc) => (
-          <Document onClick={() => dispatch(toggleDocument({ id: doc.id, name: doc.name }))} className={state.document.currentDocument.id === doc.id ? "active" : ''} key={doc.id}>
+        {state.document.documents.map((doc, index) => (
+          <Document
+            onClick={() =>
+              dispatch(toggleDocument({ id: doc.id, name: doc.name }))
+            }
+            className={
+              state.document.currentDocument.id === doc.id ? "active" : ""
+            }
+            key={doc.id}
+          >
             <DocumentIcon />
             <div>
               <Time>{doc.createdAt}</Time>
-              <DocName>{doc.name}.md</DocName>
+              <DocName>
+                {doc.name}
+              </DocName>
             </div>
           </Document>
         ))}

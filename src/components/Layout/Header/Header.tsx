@@ -42,6 +42,7 @@ const ContainerOne = styled.div`
   gap: 1rem;
   height: 100%;
   align-items: center;
+  width: max-content;
 `;
 
 const DocumentDetailsWrapper = styled.div`
