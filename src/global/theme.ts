@@ -8,6 +8,7 @@ export const lightTheme = {
     markdownBlock: 'var(--grey-5)' , 
     sideBar: 'var(--black-2)',
     backdrop: "rgba(0, 0, 0, 0.5)",
+    toggleBar: `var(--grey-5)`,
 }
 
 export const darkTheme = {
@@ -19,6 +20,7 @@ export const darkTheme = {
     dividerBg: 'var(--grey-1)',
     sideBar: 'var(--black-2)',
     backdrop: "rgba(255, 255, 255, 0.1)",
+    toggleBar: 'var(--black-2)'
 }
 
 

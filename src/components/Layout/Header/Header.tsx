@@ -75,7 +75,7 @@ const ContainerTwo = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
-  margin-right: 1rem;
+  margin-right: 2rem;
 
   path {
     transition: 1s fill;

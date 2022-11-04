@@ -113,7 +113,7 @@ h6 {
 
 html, body, #root {
   font-family: var(--robotoSlab);
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   overflow-x:hidden;
 
@@ -141,7 +141,7 @@ p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
 
-input, button, fieldset{
+input, button, fieldset, textarea{
   border: none;
   background-color: transparent;
   outline: none;

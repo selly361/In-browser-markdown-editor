@@ -7,7 +7,7 @@ import { useAppSelector } from "app/hooks";
 
 const Body = styled.div`
   background: ${({theme}) => theme.background};     
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   display: grid;
   grid-template-columns: auto 1fr;
